@@ -5,16 +5,18 @@
  */
 package com.oct24_PlayingPoints;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author J2EE-33
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class FormJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    public FormJFrame() {
         initComponents();
     }
 
@@ -175,15 +177,20 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "First Name", "Last Name", "Salary"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(jTable1);
 
         jPanel2.setBackground(new java.awt.Color(255, 212, 217));
@@ -307,6 +314,17 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        
+        String fname = txt_fname.getText();
+        String lname = txt_lname.getText();
+        
+        String salary = jTextPane3.getText();
+        int sal = Integer.parseInt(salary);
+        
+        Object[] str = new Object[]{fname,lname,sal};
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.addRow(str);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -326,20 +344,21 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new FormJFrame().setVisible(true);
             }
         });
     }
@@ -391,4 +410,5 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txt_fname;
     private javax.swing.JTextField txt_lname;
     // End of variables declaration//GEN-END:variables
+
 }
