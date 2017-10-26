@@ -25,26 +25,43 @@ public class TryBoxLayout {
         aWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Box left = Box.createVerticalBox();
+        left.add(Box.createVerticalStrut(30));//invisible height
+        
         ButtonGroup radioGroup = new ButtonGroup();
         JRadioButton rbutton;
 
         radioGroup.add(rbutton = new JRadioButton("Red"));
         left.add(rbutton);
-
+        left.add(Box.createVerticalStrut(30));
+        
         radioGroup.add(rbutton = new JRadioButton("Green"));
         left.add(rbutton);
+        left.add(Box.createVerticalStrut(30));
 
         radioGroup.add(rbutton = new JRadioButton("Blue"));
         left.add(rbutton);
-
+        left.add(Box.createVerticalStrut(30));//invisible height
         radioGroup.add(rbutton = new JRadioButton("Yellow"));
+        
         left.add(rbutton);
-
+        left.add(Box.createVerticalStrut(30));//invisible height
+        left.add(Box.createGlue()); //glue at the end to take all space at bottom
+        
         Box right = Box.createVerticalBox();
+        
+        right.add(Box.createVerticalStrut(30));//invisible height
         right.add(new JCheckBox("Dashed"));
+        
+        right.add(Box.createVerticalStrut(30));//invisible height
         right.add(new JCheckBox("Thick"));
+        
+        right.add(Box.createVerticalStrut(30));//invisible height
         right.add(new JCheckBox("Rounded"));
-
+        
+        right.add(Box.createVerticalStrut(30));//invisible height
+        right.add(Box.createGlue()); //glue at the end to take all space at bottom
+        
+        
         Box top = Box.createHorizontalBox();
         top.add(left);
         top.add(right);

@@ -34,7 +34,7 @@ public class TryGridLayout {
         EtchedBorder edge = new EtchedBorder(EtchedBorder.RAISED);
         
         JButton button = null;
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 12; i++) {
             content.add(button = new JButton("Press " + i));
             button.setBorder(edge);
         }
