@@ -17,6 +17,7 @@ public class PurchaseProduct extends javax.swing.JFrame {
     public PurchaseProduct() {
         initComponents();
         setJMenuBar(CommonMenu.displayMenu(this));
+        setTitle("Purchase Product");
     }
 
     /**
