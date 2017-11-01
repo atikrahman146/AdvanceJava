@@ -40,8 +40,8 @@ public class ToolBarWithIcon extends JFrame {
         getContentPane().add(toolBar, BorderLayout.NORTH);
 
         openAction = new FileAction("Open", KeyStroke.getKeyStroke('O', CTRL_DOWN_MASK));
-
         openAction.putValue(Action.SMALL_ICON, new ImageIcon(getClass().getResource("Images/Open.gif")));
+        
         JButton button = new JButton(openAction);
         button.setBorder(BorderFactory.createRaisedBevelBorder());
         toolBar.add(button);
