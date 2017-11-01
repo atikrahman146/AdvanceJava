@@ -319,12 +319,12 @@ public class FormJFrame extends javax.swing.JFrame {
         String lname = txt_lname.getText();
         
         String salary = jTextPane3.getText();
-        int sal = Integer.parseInt(salary);
+        double sal = Double.parseDouble(salary);
         
-        Object[] str = new Object[]{fname,lname,sal};
+        Object[] obj = new Object[]{fname,lname,sal};
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addRow(str);
+        model.addRow(obj);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -357,6 +357,7 @@ public class FormJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new FormJFrame().setVisible(true);
             }
