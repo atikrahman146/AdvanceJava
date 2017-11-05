@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE studentlist SYSTEM "StudentList.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<studentlist>
+    <student>
+        <id>1232383</id>
+        <name>Demo</name>
+        <age>27</age>
+        <email>demo@demo.com</email>
+    </student>
+    <student>
+        <id>1232328</id>
+        <name>Demo1</name>
+        <age>28</age>
+        <email>demo1@demo.com</email>
+        copyright
+    </student>
+</studentlist>
