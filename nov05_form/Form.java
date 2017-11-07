@@ -5,6 +5,13 @@
  */
 package com.nov05_form;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -50,11 +57,16 @@ public class Form extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         fsubmit = new javax.swing.JButton();
         fclear = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        fclearTable = new javax.swing.JButton();
+        femail = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        showSuccessMsg = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jFTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Student Registration Form");
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 255));
 
@@ -62,17 +74,20 @@ public class Form extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 116, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setText("Name");
 
         jLabel2.setText("Age");
 
+        fage.setText("0");
         fage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fageActionPerformed(evt);
@@ -84,10 +99,20 @@ public class Form extends javax.swing.JFrame {
 
         buttonGroup1.add(ffemale);
         ffemale.setText("Female");
+        ffemale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ffemaleActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Gender");
 
         freading.setText("Reading");
+        freading.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                freadingActionPerformed(evt);
+            }
+        });
 
         fwriting.setText("Writing");
 
@@ -96,6 +121,11 @@ public class Form extends javax.swing.JFrame {
         jLabel4.setText("Hobby");
 
         fround.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Round", "Round 31", "Round 32", "Round 33", "Round 34", "Round 35" }));
+        fround.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                froundActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Round");
 
@@ -105,7 +135,7 @@ public class Form extends javax.swing.JFrame {
 
         jLabel6.setText("Note");
 
-        fsubmit.setText("Submit");
+        fsubmit.setText("Next");
         fsubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fsubmitActionPerformed(evt);
@@ -119,42 +149,72 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
+        fclearTable.setText("Clear Table");
+        fclearTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fclearTableActionPerformed(evt);
+            }
+        });
+
+        femail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                femailActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Email");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(fclear, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fsubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(freading)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fwriting)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fwalking))
-                            .addComponent(fname)
-                            .addComponent(fage)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel7)))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(fmale)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ffemale)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                            .addComponent(fname, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fage, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(fmale)
+                                .addComponent(fclearTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ffemale))
-                            .addComponent(fround, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(37, 37, 37))
+                                .addComponent(fclear, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fsubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(femail, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(fround, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(freading)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(fwriting)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(fwalking)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(showSuccessMsg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(37, 37, 37))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,6 +227,10 @@ public class Form extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fage, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(femail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fmale)
@@ -187,39 +251,53 @@ public class Form extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
+                .addComponent(showSuccessMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fsubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fclear, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fclear, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fclearTable, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        jPanel4.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jFTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "Name", "Age", "Gender", "Hobby", "Round", "Note"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jFTable);
+        if (jFTable.getColumnModel().getColumnCount() > 0) {
+            jFTable.getColumnModel().getColumn(3).setPreferredWidth(250);
+        }
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,82 +306,169 @@ public class Form extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        getAccessibleContext().setAccessibleParent(this);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fageActionPerformed
+    private void femailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fageActionPerformed
+    }//GEN-LAST:event_femailActionPerformed
 
-    private void fsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fsubmitActionPerformed
+    private void fclearTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fclearTableActionPerformed
         // TODO add your handling code here:
-        String name = fname.getText();
-        String age = fage.getText();
-        
-        String gender = "";
-        if (fmale.isSelected()) {
-            gender = fmale.getText();
+        DefaultTableModel model = (DefaultTableModel) jFTable.getModel();
+        try {
+            if (model.getColumnCount() > 0) {
+                model.setRowCount(0);
+            }
+        } catch (Exception e) {
+            System.err.println("Table doesn't have data");
         }
-        if (ffemale.isSelected()) {
-            gender = ffemale.getText();
-        }
-        String hobby = "";
-        if (freading.isSelected()) {
-            hobby += freading.getText() + " ";
-        }
-        if (fwriting.isSelected()) {
-            hobby += fwriting.getText() + " ";
-        }
-        if (fwalking.isSelected()) {
-            hobby += fwalking.getText() + " ";
-        }
-        String round = fround.getItemAt(fround.getSelectedIndex());
-        String note = fnote.getText();
-
-        Object[] obj = new Object[]{name, age, gender, hobby, round, note};
-
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addRow(obj);
-
-        //this.setVisible(false);
-        //new Dashboard().setVisible(true);
-
-    }//GEN-LAST:event_fsubmitActionPerformed
+    }//GEN-LAST:event_fclearTableActionPerformed
 
     private void fclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fclearActionPerformed
         // TODO add your handling code here:
         fname.setText("");
         fage.setText("");
+        femail.setText("");
         buttonGroup1.clearSelection();
         freading.setSelected(false);
         fwriting.setSelected(false);
         fwalking.setSelected(false);
         fround.setSelectedIndex(0);
         fnote.setText("");
-
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        try {
-            if (model.getColumnCount() > 0) {
-                model.removeRow(0);
-            }
-        } catch (Exception e) {
-            System.out.println("Table doesn't have data");
-        }
     }//GEN-LAST:event_fclearActionPerformed
+
+    private void fsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fsubmitActionPerformed
+        // TODO add your handling code here:
+        String name = "", age = "", email = "", gender = "", hobby = "", round = "", note = "";
+
+        if (fname.getText().length() < 1) {
+            JOptionPane.showMessageDialog(null, "Enter your Name");
+
+        } else if (Integer.parseInt(fage.getText()) < 18 || Integer.parseInt(fage.getText()) > 72) {
+            JOptionPane.showMessageDialog(null, "Enter valid Age, between 18 - 71.");
+
+        } else if (!checkEmailValidity(femail.getText()) || femail.getText().length() < 1) {
+            JOptionPane.showMessageDialog(null, "Enter Email");
+
+        } else if (buttonGroup1.getSelection().isSelected() == false) {
+            JOptionPane.showMessageDialog(null, "Select a Gender");
+
+        } else if (!freading.isSelected() && !fwriting.isSelected() && !fwalking.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Select Hobby");
+
+        } else if ("Select Round".equals(fround.getItemAt(fround.getSelectedIndex()))) {
+            JOptionPane.showMessageDialog(null, "Select Round");
+
+        } else if (fnote.getText().length() < 5) {
+            JOptionPane.showMessageDialog(null, "Enter Note");
+
+        } else {
+            name = fname.getText();
+            age = fage.getText();
+            email = femail.getText();
+
+            gender = "";
+            if (fmale.isSelected()) {
+                gender = fmale.getText();
+            }
+            if (ffemale.isSelected()) {
+                gender = ffemale.getText();
+            }
+            hobby = "";
+            if (freading.isSelected()) {
+                hobby += freading.getText() + ", ";
+            }
+            if (fwriting.isSelected()) {
+                hobby += fwriting.getText() + ", ";
+            }
+            if (fwalking.isSelected()) {
+                hobby += fwalking.getText() + " ";
+            }
+            round = fround.getItemAt(fround.getSelectedIndex());
+            note = fnote.getText();
+
+            Student student = new Student(name, Integer.parseInt(age), email, gender, hobby, round, note);
+            List<Student> students = new ArrayList<>();
+            students.add(student);
+
+            DefaultTableModel model = (DefaultTableModel) jFTable.getModel();
+            Object[] col = new Object[7];
+
+            for (int i = 0; i < students.size(); i++) {
+                col[0] = students.get(i).getName();
+                col[1] = students.get(i).getAge();
+                col[2] = students.get(i).getEmail();
+                col[3] = students.get(i).getGender();
+                col[4] = students.get(i).getHobby();
+                col[5] = students.get(i).getRound();
+                col[6] = students.get(i).getNote();
+
+                model.addRow(col);
+
+                try {
+                    Utils.writeTofile("student", students);
+                } catch (Exception ex) {
+                    Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            showSuccessMsg.setText("Successfully Added into Table and Write to File");
+
+            //for (Student student1 : students) {
+            //System.out.println("Name: " + student1.getName());
+            //}
+            //Object[] obj = new Object[]{name, age, femail, gender, hobby, round, note};
+            //DefaultTableModel model = (DefaultTableModel) jFTable.getModel();
+            //model.addRow(obj);
+        }
+
+        //this.setVisible(false);
+        //new Dashboard().setVisible(true);
+    }//GEN-LAST:event_fsubmitActionPerformed
+
+    public boolean checkEmailValidity(String email) {
+        if (null != email) {
+            String regex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(email);
+
+            if (!matcher.matches()) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void ffemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ffemaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ffemaleActionPerformed
+
+    private void fageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fageActionPerformed
+
+    private void freadingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freadingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_freadingActionPerformed
+
+    private void froundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_froundActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_froundActionPerformed
 
     /**
      * @param args the command line arguments
@@ -341,29 +506,33 @@ public class Form extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JTextField fage;
-    private javax.swing.JButton fclear;
-    private javax.swing.JRadioButton ffemale;
-    private javax.swing.JRadioButton fmale;
-    private javax.swing.JTextField fname;
-    private javax.swing.JTextArea fnote;
-    private javax.swing.JCheckBox freading;
-    private javax.swing.JComboBox<String> fround;
-    private javax.swing.JButton fsubmit;
-    private javax.swing.JCheckBox fwalking;
-    private javax.swing.JCheckBox fwriting;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    public javax.swing.ButtonGroup buttonGroup1;
+    public javax.swing.JTextField fage;
+    public javax.swing.JButton fclear;
+    public javax.swing.JButton fclearTable;
+    public javax.swing.JTextField femail;
+    public javax.swing.JRadioButton ffemale;
+    public javax.swing.JRadioButton fmale;
+    public javax.swing.JTextField fname;
+    public javax.swing.JTextArea fnote;
+    public javax.swing.JCheckBox freading;
+    public javax.swing.JComboBox<String> fround;
+    public javax.swing.JButton fsubmit;
+    public javax.swing.JCheckBox fwalking;
+    public javax.swing.JCheckBox fwriting;
+    public javax.swing.JTable jFTable;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabel6;
+    public javax.swing.JLabel jLabel7;
+    public javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel3;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JLabel showSuccessMsg;
     // End of variables declaration//GEN-END:variables
 }
