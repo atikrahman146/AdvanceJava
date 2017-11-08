@@ -11,8 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -25,6 +27,7 @@ public class Form extends javax.swing.JFrame {
      */
     public Form() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -57,10 +60,12 @@ public class Form extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         fsubmit = new javax.swing.JButton();
         fclear = new javax.swing.JButton();
-        fclearTable = new javax.swing.JButton();
+        fReadFromFile = new javax.swing.JButton();
         femail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         showSuccessMsg = new javax.swing.JLabel();
+        fClearTable = new javax.swing.JButton();
+        fExit = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jFTable = new javax.swing.JTable();
@@ -93,8 +98,14 @@ public class Form extends javax.swing.JFrame {
                 fageActionPerformed(evt);
             }
         });
+        fage.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fageKeyPressed(evt);
+            }
+        });
 
         buttonGroup1.add(fmale);
+        fmale.setSelected(true);
         fmale.setText("Male");
 
         buttonGroup1.add(ffemale);
@@ -135,24 +146,34 @@ public class Form extends javax.swing.JFrame {
 
         jLabel6.setText("Note");
 
-        fsubmit.setText("Next");
+        fsubmit.setText("Add to Table and Write to File");
+        fsubmit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         fsubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fsubmitActionPerformed(evt);
             }
         });
 
-        fclear.setText("Clear");
+        fclear.setBackground(new java.awt.Color(255, 102, 0));
+        fclear.setForeground(new java.awt.Color(255, 255, 255));
+        fclear.setText("Clear Field");
+        fclear.setBorder(null);
+        fclear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         fclear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fclearActionPerformed(evt);
             }
         });
 
-        fclearTable.setText("Clear Table");
-        fclearTable.addActionListener(new java.awt.event.ActionListener() {
+        fReadFromFile.setBackground(new java.awt.Color(255, 153, 51));
+        fReadFromFile.setForeground(new java.awt.Color(255, 255, 255));
+        fReadFromFile.setText("Read from File");
+        fReadFromFile.setBorder(null);
+        fReadFromFile.setBorderPainted(false);
+        fReadFromFile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        fReadFromFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fclearTableActionPerformed(evt);
+                fReadFromFileActionPerformed(evt);
             }
         });
 
@@ -163,6 +184,28 @@ public class Form extends javax.swing.JFrame {
         });
 
         jLabel7.setText("Email");
+
+        showSuccessMsg.setForeground(new java.awt.Color(102, 102, 0));
+
+        fClearTable.setBackground(new java.awt.Color(255, 51, 0));
+        fClearTable.setForeground(new java.awt.Color(255, 255, 255));
+        fClearTable.setText("Clear Table");
+        fClearTable.setBorder(null);
+        fClearTable.setBorderPainted(false);
+        fClearTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        fClearTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fClearTableActionPerformed(evt);
+            }
+        });
+
+        fExit.setText("Exit");
+        fExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        fExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -193,16 +236,11 @@ public class Form extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fname, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fage, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(fclearTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fclear, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fsubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(femail, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(showSuccessMsg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(fround, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,9 +250,21 @@ public class Form extends javax.swing.JFrame {
                                         .addComponent(fwriting)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(fwalking)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(showSuccessMsg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(37, 37, 37))))
+                                .addGap(0, 100, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(fReadFromFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(1, 1, 1)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(fClearTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(fclear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(fsubmit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(25, 25, 25))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,13 +300,17 @@ public class Form extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(18, 18, 18)
+                .addGap(11, 11, 11)
                 .addComponent(showSuccessMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fReadFromFile, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fClearTable, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fclear, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fsubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fclear, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fclearTable, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fExit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -267,20 +321,25 @@ public class Form extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Age", "Gender", "Hobby", "Round", "Note"
+                "Name", "Age", "Email", "Gender", "Hobby", "Round", "Note"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jFTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jFTable);
         if (jFTable.getColumnModel().getColumnCount() > 0) {
-            jFTable.getColumnModel().getColumn(3).setPreferredWidth(250);
+            jFTable.getColumnModel().getColumn(4).setPreferredWidth(250);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -289,14 +348,14 @@ public class Form extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addGap(19, 19, 19))
         );
 
@@ -327,17 +386,16 @@ public class Form extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_femailActionPerformed
 
-    private void fclearTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fclearTableActionPerformed
+    private void fReadFromFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fReadFromFileActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jFTable.getModel();
-        try {
-            if (model.getColumnCount() > 0) {
-                model.setRowCount(0);
-            }
-        } catch (Exception e) {
-            System.err.println("Table doesn't have data");
-        }
-    }//GEN-LAST:event_fclearTableActionPerformed
+        String columns[] = {"Name", "Age", "Email", "Gender", "Hobby", "Round", "Note"};
+        DefaultTableModel tableModel;
+        // table with 7 columns
+        tableModel = new DefaultTableModel(0, 7);
+        tableModel.setColumnIdentifiers(columns);
+        jFTable.setModel(tableModel);
+        Utils.displayStudentsdataFromFile("student", tableModel);
+    }//GEN-LAST:event_fReadFromFileActionPerformed
 
     private void fclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fclearActionPerformed
         // TODO add your handling code here:
@@ -391,10 +449,10 @@ public class Form extends javax.swing.JFrame {
             }
             hobby = "";
             if (freading.isSelected()) {
-                hobby += freading.getText() + ", ";
+                hobby += freading.getText() + " ";
             }
             if (fwriting.isSelected()) {
-                hobby += fwriting.getText() + ", ";
+                hobby += fwriting.getText() + " ";
             }
             if (fwalking.isSelected()) {
                 hobby += fwalking.getText() + " ";
@@ -470,6 +528,76 @@ public class Form extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_froundActionPerformed
 
+    private void fClearTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fClearTableActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jFTable.getModel();
+        model.setRowCount(0);
+    }//GEN-LAST:event_fClearTableActionPerformed
+
+    private void fExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_fExitActionPerformed
+
+    private void jFTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFTableMouseClicked
+        // TODO add your handling code here:
+        int i = jFTable.getSelectedRow();
+        TableModel model = jFTable.getModel();
+        fname.setText(model.getValueAt(i, 0).toString());
+        fage.setText(model.getValueAt(i, 1).toString());
+        femail.setText(model.getValueAt(i, 2).toString());
+
+        //For radio Button
+        String gender = model.getValueAt(i, 3).toString();
+
+        if (gender.equals("Male")) {
+            fmale.setSelected(true);
+        } else {
+            fmale.setSelected(false);
+        }
+        if (gender.equals("Female")) {
+            ffemale.setSelected(true);
+        } else {
+            ffemale.setSelected(false);
+        }
+
+        //checkbox
+        String hobby = model.getValueAt(i, 4).toString();
+        if (hobby.contains("Reading")) {
+            freading.setSelected(true);
+        } else {
+            freading.setSelected(false);
+        }
+        if (hobby.contains("Writing")) {
+            fwriting.setSelected(true);
+        } else {
+            fwriting.setSelected(false);
+        }
+        if (hobby.contains("Walking")) {
+            fwalking.setSelected(true);
+        } else {
+            fwalking.setSelected(false);
+        }
+
+        String round = model.getValueAt(i, 5).toString();
+        fround.setSelectedItem(round);
+
+        //  cmbCountry.setSelectedIndex(i);
+        fnote.setText(model.getValueAt(i, 6).toString());
+
+    }//GEN-LAST:event_jFTableMouseClicked
+
+    private void fageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fageKeyPressed
+        // TODO add your handling code here:
+        char ch = evt.getKeyChar();
+        if (Character.isDigit(ch)) {
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Only numbers are allowed!");
+            fage.setText("0");
+        }
+    }//GEN-LAST:event_fageKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -499,6 +627,7 @@ public class Form extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Form().setVisible(true);
             }
@@ -507,9 +636,11 @@ public class Form extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.ButtonGroup buttonGroup1;
+    public javax.swing.JButton fClearTable;
+    public javax.swing.JButton fExit;
+    public javax.swing.JButton fReadFromFile;
     public javax.swing.JTextField fage;
     public javax.swing.JButton fclear;
-    public javax.swing.JButton fclearTable;
     public javax.swing.JTextField femail;
     public javax.swing.JRadioButton ffemale;
     public javax.swing.JRadioButton fmale;
