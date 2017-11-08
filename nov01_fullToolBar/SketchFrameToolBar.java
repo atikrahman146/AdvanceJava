@@ -26,7 +26,7 @@ import java.awt.BorderLayout;
 import static java.awt.event.InputEvent.*;
 import static java.awt.AWTEvent.*;
 import static java.awt.Color.*;
-import static Constants.SketcherConstants.*;
+import static com.nov01_fullToolBar.Constants.SketcherConstants.*;
 
 public class SketchFrameToolBar extends JFrame {
   // Constructor

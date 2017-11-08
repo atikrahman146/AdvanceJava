@@ -1,5 +1,5 @@
 // Defines application wide constants
-package Constants;
+package com.nov01_fullToolBar.Constants;
 import java.awt.Color;
 
 public class SketcherConstants { 
