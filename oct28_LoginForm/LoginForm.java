@@ -79,7 +79,7 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String user = userN.getText();
-        String pass = userP.getText();
+        char[] pass = userP.getPassword();
         
         if (user.equals("admin") && pass.equals("123")) {
             this.setVisible(false);
