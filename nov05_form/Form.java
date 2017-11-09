@@ -27,7 +27,7 @@ public class Form extends javax.swing.JFrame {
      */
     public Form() {
         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -72,6 +72,7 @@ public class Form extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student Registration Form");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 255));
 
@@ -177,6 +178,7 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
+        femail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         femail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 femailActionPerformed(evt);
