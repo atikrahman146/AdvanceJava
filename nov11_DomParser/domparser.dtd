@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/domparser.dtd
+
+-->
+
+<!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE st:class SYSTEM "domparser.dtd">
+
+    <st:class>
+    ...
+    </st:class>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT st:class (st:student)*>
+<!ATTLIST st:class
+    xmlns:st CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT st:student (st:firstname|st:lastname|st:marks)*>
+<!ATTLIST st:student
+    rollno CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT st:firstname (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT st:lastname (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT st:marks (#PCDATA)>

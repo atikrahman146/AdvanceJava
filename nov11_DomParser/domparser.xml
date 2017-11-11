@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE st:class SYSTEM "domparser.dtd">
+<st:class xmlns:st="smd">
+    <st:student rollno="1232383">
+        <st:firstname>Atik</st:firstname>
+        <st:lastname>Topper</st:lastname>
+        <st:marks>100000</st:marks>
+    </st:student>
+    <st:student rollno="1232323">
+        <st:firstname>Shahriar</st:firstname>
+        <st:lastname>Topper</st:lastname>
+        <st:marks>100000</st:marks>
+    </st:student>
+</st:class>
