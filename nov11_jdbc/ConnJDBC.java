@@ -5,10 +5,14 @@
  */
 package com.nov11_jdbc;
 
+import java.sql.Connection;
+
 /**
  *
  * @author J2EE-33
  */
 public class ConnJDBC {
-    
+    public static void main(String[] args) {
+        Connection conn = DBConnection.getConnection("xe", "hr", "hr");
+    }
 }

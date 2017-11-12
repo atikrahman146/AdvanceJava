@@ -45,7 +45,7 @@ public class DomParser {
                 }
             }
         } catch (Exception e) {
-            
+
         }
     }
 }
