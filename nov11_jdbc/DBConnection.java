@@ -30,6 +30,7 @@ public class DBConnection {
     public static Connection getConnection(String dbname, String dbUserName, String dbPass) {
         try {
             connection = DriverManager.getConnection(url + dbname, dbUserName, dbPass);
+            System.out.println(":::::::CONNECTED::::::::");
         } catch (SQLException ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
