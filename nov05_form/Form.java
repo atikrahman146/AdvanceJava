@@ -94,6 +94,7 @@ public class Form extends javax.swing.JFrame {
         jLabel2.setText("Age");
 
         fage.setText("0");
+        fage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         fage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fageActionPerformed(evt);
@@ -104,6 +105,8 @@ public class Form extends javax.swing.JFrame {
                 fageKeyPressed(evt);
             }
         });
+
+        fname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         buttonGroup1.add(fmale);
         fmale.setSelected(true);
@@ -143,6 +146,7 @@ public class Form extends javax.swing.JFrame {
 
         fnote.setColumns(20);
         fnote.setRows(5);
+        fnote.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(fnote);
 
         jLabel6.setText("Note");
