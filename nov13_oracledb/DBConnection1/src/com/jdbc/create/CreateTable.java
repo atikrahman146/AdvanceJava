@@ -6,7 +6,7 @@
 package com.jdbc.create;
 
 import static com.jdbc.connection.ConnectionDB.conn;
-import com.jdbc.service.StudentService;
+import com.jdbc.query.DataRetrieveService;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -29,7 +29,7 @@ public class CreateTable {
             int i = pstm.executeUpdate();
             System.out.println( i + "table has been updated successfully.");
         } catch (SQLException ex) {
-            Logger.getLogger(StudentService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataRetrieveService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

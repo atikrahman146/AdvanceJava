@@ -8,6 +8,7 @@ package com.jdbc.service;
 import static com.jdbc.connection.ConnectionDB.conn;
 import com.jdbc.dao.StudentDao;
 import com.jdbc.domain.Student;
+import com.jdbc.query.DataRetrieveService;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +37,7 @@ public class StudentService implements StudentDao {
                 System.out.println(i + " record inserted");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StudentService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataRetrieveService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -54,7 +55,7 @@ public class StudentService implements StudentDao {
                 System.out.println(i + " record updated");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StudentService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataRetrieveService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -68,7 +69,7 @@ public class StudentService implements StudentDao {
                 System.out.println(i + " record deleted");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StudentService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataRetrieveService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -86,7 +87,7 @@ public class StudentService implements StudentDao {
                 list.add(s);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StudentService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataRetrieveService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
@@ -105,7 +106,7 @@ public class StudentService implements StudentDao {
                 s.setName(rs.getString(2));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StudentService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataRetrieveService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return s;
     }

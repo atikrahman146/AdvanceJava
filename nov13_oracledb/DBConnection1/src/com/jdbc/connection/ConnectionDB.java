@@ -15,7 +15,7 @@ public class ConnectionDB {
     
     public static Connection conn = DBconnectQuery.getConnection("xe", "hr", "hr");
     
-    public static void main(String[] args) {
-        ConnectionDB connectionDB = new ConnectionDB();
-    }
+    //public static void main(String[] args) {
+        //Connection connTest = DBconnectQuery.getConnection("xe", "hr", "hr");
+    //}
 }

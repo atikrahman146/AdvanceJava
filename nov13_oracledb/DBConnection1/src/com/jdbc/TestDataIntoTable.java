@@ -24,13 +24,14 @@ public class TestDataIntoTable {
         //studentService.save(std);
         //studentService.update(std);
         //studentService.delete(1002);
-        List<Student> stList = studentService.getStudents();
-        for (Student s : stList) {
-            System.out.println("Name: " + s.getName() + " ID: " + s.getId());
-        }
-
-        //String stname = studentService.getStudent(1001).getName();
-        //int stid = studentService.getStudent(1001).getId();
-        //System.out.println("ID: " + stid + " Name: " + stname);
+        
+        //List<Student> stList = studentService.getStudents();
+        //for (Student s : stList) {
+        //System.out.println("Name: " + s.getName() + " ID: " + s.getId());
+        //}
+        
+        String stname = studentService.getStudent(1001).getName();
+        int stid = studentService.getStudent(1001).getId();
+        System.out.println("ID: " + stid + " Name: " + stname);
     }
 }
