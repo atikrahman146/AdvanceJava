@@ -63,8 +63,7 @@ public class ReadaccessAndWriteToXml {
                     = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
             StreamResult result
-                    = //  new StreamResult(new File("../AttnSolutions/xml/studentsAttendance.xml"));
-                    new StreamResult(new FileOutputStream("studentsAttendance.xml"));
+                    = new StreamResult(new FileOutputStream("studentsAttendance.xml"));
             transformer.transform(source, result);
             // Output to console for testing
             StreamResult consoleResult

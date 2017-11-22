@@ -13,7 +13,7 @@ import java.sql.Connection;
  */
 public class RunOracleDBconnection {
     
-    public static Connection conn = OracleDBconnection.getConnection("xe", "hr", "hr");
+    public static Connection connOracle = OracleDBconnection.getConnection("xe", "hr", "hr");
     
     public static void main(String[] args) {
         //RunOracleDBconnection connectionDB = new RunOracleDBconnection();
