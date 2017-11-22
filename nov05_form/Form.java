@@ -596,9 +596,7 @@ public class Form extends javax.swing.JFrame {
     private void fageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fageKeyPressed
         // TODO add your handling code here:
         char ch = evt.getKeyChar();
-        if (Character.isDigit(ch)) {
-            
-        } else {
+        if (Character.isAlphabetic(ch)) {
             JOptionPane.showMessageDialog(null, "Only numbers are allowed!");
             fage.setText("0");
         }
