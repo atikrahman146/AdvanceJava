@@ -464,40 +464,46 @@ public class Form extends javax.swing.JFrame {
                 hobby += fwalking.getText() + " ";
             }
             round = fround.getItemAt(fround.getSelectedIndex());
+
             note = fnote.getText();
 
             Student student = new Student(name, Integer.parseInt(age), email, gender, hobby, round, note);
-            List<Student> students = new ArrayList<>();
-            students.add(student);
+            List<Student> studentsList = new ArrayList<>();
+            studentsList.add(student);
 
             DefaultTableModel model = (DefaultTableModel) jFTable.getModel();
             Object[] col = new Object[7];
 
-            for (int i = 0; i < students.size(); i++) {
-                col[0] = students.get(i).getName();
-                col[1] = students.get(i).getAge();
-                col[2] = students.get(i).getEmail();
-                col[3] = students.get(i).getGender();
-                col[4] = students.get(i).getHobby();
-                col[5] = students.get(i).getRound();
-                col[6] = students.get(i).getNote();
+            for (int i = 0; i < studentsList.size(); i++) {
+                col[0] = studentsList.get(i).getName();
+                col[1] = studentsList.get(i).getAge();
+                col[2] = studentsList.get(i).getEmail();
+                col[3] = studentsList.get(i).getGender();
+                col[4] = studentsList.get(i).getHobby();
+                col[5] = studentsList.get(i).getRound();
+                col[6] = studentsList.get(i).getNote();
 
                 model.addRow(col);
 
                 try {
-                    Utils.writeTofile("student", students);
+                    Utils.writeTofile("student", studentsList);
                 } catch (Exception ex) {
                     Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             showSuccessMsg.setText("Successfully Added into Table and Write to File");
 
-            //for (Student student1 : students) {
-            //System.out.println("Name: " + student1.getName());
-            //}
-            //Object[] obj = new Object[]{name, age, femail, gender, hobby, round, note};
-            //DefaultTableModel model = (DefaultTableModel) jFTable.getModel();
-            //model.addRow(obj);
+            /*
+            Object[] obj = new Object[]{name, age, email, gender, hobby, round, note};
+            for (Student s : studentsList) {
+                model.addRow(obj);
+                try {
+                    Utils.writeTofile("student", studentsList);
+                } catch (Exception ex) {
+                    Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+             */
         }
 
         //this.setVisible(false);

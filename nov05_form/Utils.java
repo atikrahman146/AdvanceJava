@@ -23,25 +23,24 @@ import javax.swing.table.DefaultTableModel;
 class Utils {
 
     //public static void main(String[] args) throws Exception {
-        //List<Student> list = new ArrayList<>();
-        //list.add(new Student("Reza", 37, "email", "Male", "Coding", "19", "okkkkkkkkk"));
-        //writeTofile("student_infox", list);
+    //List<Student> list = new ArrayList<>();
+    //list.add(new Student("Reza", 37, "email", "Male", "Coding", "19", "okkkkkkkkk"));
+    //writeTofile("student_infox", list);
     //}
-
-    public static void writeTofile(String filename, List<Student> students) throws Exception {
+    public static void writeTofile(String filename, List<Student> students) {
         File destFile = new File(filename + ".txt");
         try {
             if (destFile.exists() == false) {
-                System.out.println("We have to make a new file.");
                 destFile.createNewFile();
             }
-            try (PrintWriter fileToSave = new PrintWriter(new FileWriter(destFile, true))) {
-                for (Student s : students) {
-                    fileToSave.append(s.getName() + ", " + s.getAge() + ", " + s.getEmail() + ", " + s.getGender() + ", " + s.getHobby() + ", " + s.getRound() + ", " + s.getNote() + "\n");
-                }
+            PrintWriter printFile = new PrintWriter(new FileWriter(destFile, true));
+            for (Student student : students) {
+                printFile.append(student.getName() + ", " + student.getAge() + ", " + student.getEmail() + ", " + student.getGender() + ", " + student.getHobby() + ", " + student.getRound() + ", " + student.getNote() + "\n");
             }
+            printFile.close();
+
         } catch (IOException e) {
-            System.out.println("COULD NOT LOG!!");
+            System.err.println("Could not log");
         }
     }
 
@@ -50,14 +49,13 @@ class Utils {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(filename + ".txt"));
-
             while ((line = reader.readLine()) != null) {
-                model.addRow(line.split(", ")); //this has a comma and a space bc that  is how the file is written to
+                model.addRow(line.split(", "));
             }
             reader.close();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Buffered Reader issue.");
         }
-
     }
+
 }
