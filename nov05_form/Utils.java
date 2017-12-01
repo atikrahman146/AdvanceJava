@@ -57,5 +57,4 @@ class Utils {
             JOptionPane.showMessageDialog(null, "Buffered Reader issue.");
         }
     }
-
 }
