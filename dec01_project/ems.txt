@@ -1,0 +1,2 @@
+https://github.com/codingeass/Inventory-Control-System
+https://github.com/openboxes/openboxes
