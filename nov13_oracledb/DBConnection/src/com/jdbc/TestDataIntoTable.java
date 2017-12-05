@@ -19,9 +19,9 @@ public class TestDataIntoTable {
 
     public static void main(String[] args) {
         studentService = new StudentService();
-        Student std = new Student(1005, "Affan Arsalan");
+        Student std = new Student(1001, "Affan Arsalan");
 
-        //studentService.save(std);
+        studentService.save(std);
         //studentService.update(std);
         //studentService.delete(1002);
         List<Student> stList = studentService.getStudents();

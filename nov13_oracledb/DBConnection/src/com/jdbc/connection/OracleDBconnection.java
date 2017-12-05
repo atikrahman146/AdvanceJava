@@ -15,14 +15,14 @@ import java.util.logging.Logger;
  *
  * @author J2EE-33
  */
-public class DBconnectQuery {
+public class OracleDBconnection {
     private static final String DRIVERNAME = "oracle.jdbc.driver.OracleDriver";
     private static final String HOST = "jdbc:oracle:thin:@localhost";
     private static final String PORT = "1521";
     private static Connection connection;
     private static String url = HOST + ":" + PORT + ":";
 
-    public DBconnectQuery() {
+    public OracleDBconnection() {
 
     }
 
@@ -31,7 +31,7 @@ public class DBconnectQuery {
             connection = DriverManager.getConnection(url + dbname, dbUserName, dbPass);
             System.out.println(":::::::CONNECTED::::::::");
         } catch (SQLException ex) {
-            Logger.getLogger(DBconnectQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OracleDBconnection.class.getName()).log(Level.SEVERE, null, ex);
         }
         return connection;
     }

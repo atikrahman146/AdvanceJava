@@ -5,7 +5,8 @@
  */
 package com.jdbc.service;
 
-import static com.jdbc.connection.ConnectionDB.conn;
+import static com.jdbc.connection.RunMySqlDBConnection.connMysql;
+import static com.jdbc.connection.RunOracleDBconnection.connOracle;
 import com.jdbc.dao.StudentDao;
 import com.jdbc.domain.Student;
 import java.sql.PreparedStatement;
@@ -26,7 +27,7 @@ public class StudentService implements StudentDao {
     public void save(Student s) {
         try {
             if (s.getName() != null) {
-                PreparedStatement stmt = conn.prepareStatement("insert into studentbd(id, student_name) values(?,?)");
+                PreparedStatement stmt = connOracle.prepareStatement("insert into studentbd(id, student_name) values(?,?)");
 
                 stmt.setInt(1, s.getId());
                 stmt.setString(2, s.getName());
@@ -44,7 +45,7 @@ public class StudentService implements StudentDao {
     public void update(Student s) {
         try {
             if (s.getId() != 0) {
-                PreparedStatement stmt = conn.prepareStatement("update studentbd set student_name=? where id=?");
+                PreparedStatement stmt = connOracle.prepareStatement("update studentbd set student_name=? where id=?");
 
                 stmt.setString(1, s.getName());
                 stmt.setInt(2, s.getId());
@@ -62,7 +63,7 @@ public class StudentService implements StudentDao {
     public void delete(int id) {
         try {
             if (id != 0) {
-                PreparedStatement stmt = conn.prepareStatement("delete from studentbd where id=?");
+                PreparedStatement stmt = connOracle.prepareStatement("delete from studentbd where id=?");
                 stmt.setInt(1, id);
                 int i = stmt.executeUpdate();
                 System.out.println(i + " record deleted");
@@ -77,7 +78,7 @@ public class StudentService implements StudentDao {
         List<Student> list = new ArrayList<>();
         try {
             Student s;
-            PreparedStatement stmt = conn.prepareStatement("select * from studentbd");
+            PreparedStatement stmt = connOracle.prepareStatement("select * from studentbd");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 s = new Student();
@@ -95,7 +96,7 @@ public class StudentService implements StudentDao {
     public Student getStudent(int id) {
         Student s = null;
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from studentbd where id=?");
+            PreparedStatement stmt = connOracle.prepareStatement("select * from studentbd where id=?");
             stmt.setInt(1, id);
 
             ResultSet rs = stmt.executeQuery();

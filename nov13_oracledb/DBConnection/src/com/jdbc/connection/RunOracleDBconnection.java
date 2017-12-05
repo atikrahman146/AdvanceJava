@@ -11,11 +11,11 @@ import java.sql.Connection;
  *
  * @author J2EE-33
  */
-public class ConnectionDB {
+public class RunOracleDBconnection {
     
-    public static Connection conn = DBconnectQuery.getConnection("xe", "hr", "hr");
+    public static Connection connOracle = OracleDBconnection.getConnection("xe", "hr", "hr");
     
     public static void main(String[] args) {
-        ConnectionDB connectionDB = new ConnectionDB();
+        //RunOracleDBconnection connectionDB = new RunOracleDBconnection();
     }
 }
